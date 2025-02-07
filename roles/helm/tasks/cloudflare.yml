@@ -78,8 +78,12 @@
         src: cloudflare-values.yml.j2
         dest: /tmp/cloudflare-values.yml
 
+    # /!\ Si le tunnel est supprimé manuellement, le secret ne l'est pas /!\
     - name: Create credentials secret
       command: "kubectl create secret generic tunnel-credentials --from-file=credentials.json=/etc/cloudflared/creds/{{ tunnel_id }}.json -n tools"
+      register: create_secret_result
+      failed_when: "'already exists' not in create_secret_result.stderr and create_secret_result.rc != 0"
+      changed_when: create_secret_result.rc == 0
 
     - name: Add Cloudflare Helm repo
       ansible.builtin.command: helm repo add cloudflare https://cloudflare.github.io/helm-charts

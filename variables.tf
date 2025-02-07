@@ -18,6 +18,11 @@ variable "node_name" {
   description = "Proxmox node name"
 }
 
+variable "node_pool" {
+  type = string
+  description = "Proxmox node pool"
+}
+
 variable "nodes" {
   type = map(object({
     host_ip         : string

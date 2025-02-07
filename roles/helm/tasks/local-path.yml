@@ -1,0 +1,25 @@
+---
+
+- name: Installer le Local Path Provisioner
+  ansible.builtin.command: kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+
+- name: Créer le répertoire pour Kustomize sur le nœud cible
+  ansible.builtin.file:
+    path: /tmp/kustomize/storageclass
+    state: directory
+
+- name: Récupérer 'storageclass.yml' sur le noeud cible
+  ansible.builtin.shell: kubectl get storageclass local-path -o yaml > /tmp/kustomize/storageclass/storageclass.yml
+
+- name: Copier 'kustomization.yml' sur le noeud cible
+  ansible.builtin.copy:
+    src: "files/storageclass-patch/kustomization.yml"
+    dest: /tmp/kustomize/storageclass/kustomization.yml
+
+- name: Copier 'storageclass-patch.yml' sur le noeud cible
+  ansible.builtin.copy:
+    src: "files/storageclass-patch/storageclass-patch.yml"
+    dest: /tmp/kustomize/storageclass/storageclass-patch.yml
+
+- name: Appliquer la Kustomization pour patcher la StorageClass
+  ansible.builtin.command: kubectl apply -k /tmp/kustomize/storageclass

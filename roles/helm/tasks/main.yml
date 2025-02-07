@@ -3,8 +3,14 @@
 - name: Include install tasks
   include_tasks: install.yml
 
-- name: Include harbor tasks
-  include_tasks: harbor.yml
+- name: Include local-path tasks
+  include_tasks: local-path.yml
+
+#- name: Include harbor tasks
+#  include_tasks: harbor.yml
+
+- name: Include Greenbone tasks
+  include_tasks: gvm.yml
 
 - name: Include cloudflare tasks
   include_tasks: cloudflare.yml

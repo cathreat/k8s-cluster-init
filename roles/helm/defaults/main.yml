@@ -17,10 +17,10 @@ cloudflare_zone: "bingops.com"
 cloudflare_hostname_registry: "registry.bingops.com"
 cloudflare_hostname_notary: "notary.bingops.com"
 cloudflare_email: "therealbingops@gmail.com"
-cloudflare_service: "http://harbor-portal:80" # https://harbor-core.tools.svc.cluster.local:443
+cloudflare_service: "http://harbor-portal.tools.svc.cluster.local:80"
 
 # Harbor service URLs
-harbor_core_service_url: "http://harbor-portal:80"
+harbor_core_service_url: "http://harbor-portal.tools.svc.cluster.local:80"
 harbor_notary_service_url: "http://harbor-notary-server.tools.svc.cluster.local:80"
 
 # Cloudflared paths
@@ -39,3 +39,5 @@ coder_db_password: !vault |
   3362366339383765300a623638643835383734326633306437313535376561356533313434336139
   3466
 
+# Greenbone values
+gvmImageTag: "22"

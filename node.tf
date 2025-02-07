@@ -4,6 +4,7 @@ resource "proxmox_virtual_environment_vm" "node" {
   name        = each.key
   node_name   = var.node_name
   vm_id       = each.value.vm_id
+  pool_id     = var.node_pool
   description = "VM for ${each.value.role}"
 
   started   = true

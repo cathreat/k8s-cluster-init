@@ -1,4 +1,4 @@
 ---
 
 pods_cidr: "10.10.0.0/16"
-kustomize_path: "/tmp/coredns-patch"
+coredns_kustomize_path: "/tmp/kustomize/coredns-patch"

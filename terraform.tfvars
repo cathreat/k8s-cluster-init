@@ -1,6 +1,7 @@
 # `node.tf` values
 
 node_name = "homelab"
+node_pool = "Kubernetes"
 
 nodes = {
   kmaster = {

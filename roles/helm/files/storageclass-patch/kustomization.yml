@@ -1,0 +1,4 @@
+resources:
+  - storageclass.yml
+patchesStrategicMerge:
+  - storageclass-patch.yml
